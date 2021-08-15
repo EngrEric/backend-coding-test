@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 module.exports = (db) => {
-    app.get('/health', (req, res) => res.send('Healthy'));
+    app.get('/health', (req, res) => res.send({message:'Healthy', data: {active:true}}));
 
     app.post('/rides', jsonParser, (req, res) => {
         const startLatitude = Number(req.body.start_lat);
@@ -71,7 +71,7 @@ module.exports = (db) => {
                     });
                 }
 
-                res.send(rows);
+                res.status(200).send({data:rows, message: "Added a ride successfully"});
             });
         });
     });
@@ -92,7 +92,7 @@ module.exports = (db) => {
                 });
             }
 
-            res.send(rows);
+            res.send({data:{items: rows}, message: "Successfully retrives all rides"});
         });
     });
 
