@@ -41,9 +41,9 @@
                     "data": {
                       "type": "object",
                       "properties": {
-                          "active": {
-                              "type": "boolean"
-                          }
+                        "active": {
+                          "type": "boolean"
+                        }
                       }
                     },
                     "message": {
@@ -99,6 +99,20 @@
       "get": {
         "tags": ["Rider"],
         "summary": "Get all the riders",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": true,
+            "schema": { "type": "number" }
+          },
+          {
+            "in": "query",
+            "name": "lastID",
+            "required": true,
+            "schema": { "type": "number" }
+          }
+        ],
         "operationId": "getRiders",
         "security": [
           {
@@ -274,7 +288,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "error": {
+                "error_code": {
                   "type": "string"
                 },
                 "message": {
@@ -338,6 +352,9 @@
               "type": "object",
               "properties": {
                 "message": {
+                  "type": "string"
+                },
+                "error_code": {
                   "type": "string"
                 }
               }
