@@ -195,7 +195,7 @@ describe('API tests', () => {
       request(app)
         .get('/rides')
         .expect('Content-Type', /json/)
-        .expect(200)
+        .expect(500)
         .then(response => {
           assert.strictEqual(response.body.error_code, 'SERVER_ERROR')
           done()

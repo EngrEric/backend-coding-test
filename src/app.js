@@ -28,16 +28,15 @@ module.exports = db => {
       startLongitude < -180 ||
       startLongitude > 180
     ) {
-      const erroObj1 = {
-        error_code: 'VALIDATION_ERROR',
-        message:
-          'Start latitude and longitude must be between -90 - 90 and -180 to 180 degrees respectively'
-      }
 
       logger.error(
         'Start latitude and longitude must be between -90 - 90 and -180 to 180 degrees respectively'
       )
-      return res.send(errorObj)
+      return res.send({
+        error_code: 'VALIDATION_ERROR',
+        message:
+          'Start latitude and longitude must be between -90 - 90 and -180 to 180 degrees respectively'
+      })
     }
 
     if (endLatitude < -90 || endLatitude > 90 || endLongitude < -180 || endLongitude > 180) {
@@ -120,7 +119,7 @@ module.exports = db => {
       function (err, rows) {
         logger.error('SERVER_ERROR', [err])
         if (err) {
-          return res.send({
+          return res.status(500).send({
             error_code: 'SERVER_ERROR',
             message: 'Unknown error'
           })
