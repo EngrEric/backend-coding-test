@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - 10.13.0
+
+deploy:
+  provider: heroku:git
+  api_key:  faa133ad-46bf-43e2-9890-107942cebefa

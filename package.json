@@ -7,8 +7,10 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha tests",
-    "start": "node index.js"
+    "test": "nyc --all ---reporter=html --reporter=text --check-coverage --lines 80 --branches 80 --statements 80 mocha --timeout 40000 ./tests/*.test.js",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "eslint --fix . --ignore-path .eslintignore"
   },
   "keywords": [
     "Xendit"
@@ -22,7 +24,29 @@
     "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier-standard": "^4.0.1",
+    "eslint-plugin-json": "^3.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "husky": "^7.0.1",
     "mocha": "^6.1.4",
-    "supertest": "^4.0.2"
+    "nodemon": "^2.0.12",
+    "nyc": "^15.1.0",
+    "prettier": "^2.3.2",
+    "supertest": "^4.0.2",
+    "winston": "^3.3.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run test",
+      "pre-commit": "npm run lint"
+    }
+  },
+  "nyc": {
+    "include": [
+      "src"
+    ]
   }
 }
