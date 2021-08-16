@@ -1,0 +1,38 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 10
+  },
+  "rules": {
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        "exceptions": [
+          "-",
+          "+"
+        ]
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "none",
+        "singleQuote": true,
+        "tabWidth": 2,
+        "printWidth": 100,
+        "semi": false,
+        "arrowParens": "avoid",
+        "spacedComment": false,
+        "endOfLine": "auto"
+      }
+    ]
+  },
+  "extends": [
+    "prettier"
+  ],
+  "plugins": [
+    "prettier",
+    "json",
+    "standard"
+  ]
+}
