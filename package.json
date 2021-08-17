@@ -40,8 +40,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run test",
-      "pre-commit": "npm run lint"
+       "pre-push": "git diff HEAD --quiet && npm test"
     }
   },
   "nyc": {
