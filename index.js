@@ -3,6 +3,7 @@
 const swaggerUi = require('swagger-ui-express')
 const sqlite3 = require('sqlite3').verbose()
 const bodyParser = require('body-parser')
+const helmet = require('helmet')
 
 const buildSchemas = require('./src/schemas')
 const swaggerDocS = require('./src/swagger.json')
