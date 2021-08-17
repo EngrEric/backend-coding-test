@@ -2,6 +2,7 @@
 
 const swaggerUi = require('swagger-ui-express')
 const sqlite3 = require('sqlite3').verbose()
+const bodyParser = require('body-parser')
 
 const buildSchemas = require('./src/schemas')
 const swaggerDocS = require('./src/swagger.json')
@@ -15,6 +16,7 @@ db.serialize(() => {
 
   const app = require('./src/app')(db)
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocS))
-
+  // parse application/json
+  app.use(bodyParser.json())
   app.listen(port, () => console.log(`App started and listening on port ${port}`))
 })

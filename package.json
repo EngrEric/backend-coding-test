@@ -40,9 +40,11 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run test",
-      "pre-commit": "npm run lint"
+      "pre-push": "prepush-run"
     }
+  },
+  "prepush-run": {
+    "src/*.js?(x)": "npm run test"
   },
   "nyc": {
     "include": [
