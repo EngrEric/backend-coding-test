@@ -1,0 +1,31 @@
+config:
+  target: "http://localhost:8010"
+  ensure:
+    p99: 50
+  phases:
+    - duration: 30
+      arrivalRate: 20
+  variables:
+    start_lat: 80
+    start_long: 90
+    end_lat: 80
+    end_long: 80
+    rider_name: "eric"
+    driver_name: "okemmadu"
+    driver_vehicle: "vh199"
+scenarios:
+  - flow:
+      - post:
+          url: "/rides"
+          json:
+            start_lat: "{{ start_lat }}"
+            start_long: "{{ start_long }}"
+            end_lat: "{{ end_lat }}"
+            end_long: "{{ end_long }}"
+            rider_name: "{{ rider_name }}"
+            driver_name: "{{ driver_name }}"
+            driver_vehicle: "{{ driver_vehicle }}"
+      - get:
+          url: "/rides"
+      - get:
+          url: "/rides/1"
