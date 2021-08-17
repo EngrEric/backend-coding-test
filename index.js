@@ -15,8 +15,8 @@ db.serialize(() => {
   buildSchemas(db)
 
   const app = require('./src/app')(db)
+  app.use(helmet())
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocS))
-  // parse application/json
-  app.use(bodyParser.json())
+
   app.listen(port, () => console.log(`App started and listening on port ${port}`))
 })

@@ -134,6 +134,13 @@ const createRide = async (req, res, db) => {
 const getRides = (req, res, db) => {
   const { limit, lastID } = req.query
 
+  if (!limit || !lastID) {
+    return res.send({
+      error_code: 'VALIDATION_ERROR',
+      message: 'Please provide query limit and lastID'
+    })
+  }
+
   db.all(
     'SELECT * FROM Rides WHERE rideID > ? ORDER BY rideID LIMIT ?',
     [lastID, limit],
@@ -169,7 +176,7 @@ const getRides = (req, res, db) => {
  * @param {*} db an instance of the db
  */
 const getRideById = (req, res, db) => {
-  db.all(`SELECT * FROM Rides WHERE rideID='${req.params.id}'`, function (err, rows) {
+  db.all('SELECT * FROM Rides WHERE rideID = ?', req.params.id, function (err, rows) {
     if (err) {
       logger.error('SERVER_ERROR', [err])
       return res.send({
