@@ -5,14 +5,30 @@ config:
   phases:
     - duration: 30
       arrivalRate: 20
+
+# ENVIRONMENTS
+  environments:
+    prod:
+      target: "http://wontresolve.prod:44321"
+      phases:
+      - duration: 30
+        arrivalRate: 20
+    dev:
+      target: "http://localhost:8010"
+      phases:
+      - duration: 30
+        arrivalRate: 20
+
+  # REQUEST BODY VARIABLES
   variables:
     start_lat: 80
     start_long: 90
     end_lat: 80
     end_long: 80
-    rider_name: "eric"
-    driver_name: "okemmadu"
-    driver_vehicle: "vh199"
+    rider_name: eric
+    driver_name: okemmadu
+    driver_vehicle: vh199
+    
 scenarios:
   - flow:
       - post:
@@ -25,7 +41,13 @@ scenarios:
             rider_name: "{{ rider_name }}"
             driver_name: "{{ driver_name }}"
             driver_vehicle: "{{ driver_vehicle }}"
+          capture:
+            json: "$.rideID"
+            as: "rideID"
       - get:
           url: "/rides"
+          qs:
+            limit: 10
+            lastID: 2
       - get:
-          url: "/rides/1"
+          url: "/rides/{{rideID}}"
