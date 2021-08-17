@@ -40,7 +40,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm test"
+       "pre-push": "git diff HEAD --quiet && npm test"
     }
   },
   "nyc": {
