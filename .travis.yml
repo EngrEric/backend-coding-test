@@ -1,7 +1,15 @@
 language: node_js
 node_js:
 - 10.13.0
+
+branches:
+  only:
+  - master
+
 deploy:
   provider: heroku
+  skip_cleanup: true
+  keep-history: true
+  app: backend-coding-test
   api_key:
-    secure: WmWUTwHX0dgJacEiWYw/x+OTYghmZudPaF0SeRKkAtnlG30Z+umEnCQ1uwm8/GcgcWmawSc67loHQNXDE3P2GG9nN0HQAoTFxgazI3dfjfn9crdO7UeYfOXBmR12m9l+pPc1dd+Q45VoJO7J4laWLfuIkLMIRqf0pjXUsB2oh2E1hTUJEwnJ9EY64tnPtZIsmRQM7KoS59hSwSOYcSp+0whABzPL1v6G/TzmFAQyvhM11UnOJp9W+xu3dmHyR8RwY4xPm1uiRbvZbfhu8KpzzkBHCLAsFgVdOLeZvwZwkIES2QjLxa6oZbejKOzICbWmBEn3ldLS5nulKAcsdBhhP/cp37uZuOSozGbBQo8Rv0z0269vAdu+YtFNOJk22PKcJ1t8j+ZJPSinrVyvzYx5NH9x7kb8XD0Ztw3GAtqivYkpZxRr4iGN2Hv2YmQzMCUAJ5ItjhHi9LsKLmVep1UaVaLtFnCrilslnoOgbKc4iiNp5h6qjg70F84ovCIBKW6JKAMdzSCyRix9jay17qUzaaA5e3lnerXIEDv2DYI0u88G2WdK+4WfKdzT852QinDQDLeYZJhn3rSRJ6EshMXqL5Vhlq8JL/p1HcCjYD0eLWS9IFsKXBp+FDRX4sVlYH6pVeesKzujhmNXfRzwDbF5a2lPq6guxi2e8EX7ZZTbxb8=
+    secure: $HEROKU_API_KEY
