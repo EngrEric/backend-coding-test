@@ -191,13 +191,13 @@ describe('API tests', () => {
   })
 
   describe('GET /rides', () => {
-    it('should return server error if query valaues are not provided', done => {
+    it('should not return server error if query valaues are not provided', done => {
       request(app)
         .get('/rides')
         .expect('Content-Type', /json/)
-        .expect(500)
+        .expect(200)
         .then(response => {
-          assert.strictEqual(response.body.error_code, 'SERVER_ERROR')
+          assert(response.body.data.items.length >= 1)
           done()
         })
         .catch(err => done(err))
@@ -216,5 +216,16 @@ describe('API tests', () => {
         })
         .catch(err => done(err))
     })
-  })
+  }),
+    describe('should return not found error given that the ride is not found', done => {
+      request(app)
+        .get(`/rides/1000`)
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .then(response => {
+          assert.strictEqual(response.body.error_code, 'RIDES_NOT_FOUND_ERROR')
+          done()
+        })
+        .catch(err => done(err))
+    })
 })

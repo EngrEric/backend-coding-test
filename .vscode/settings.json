@@ -8,5 +8,12 @@
   "javascript.validate.enable": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "prettier.trailingComma": "none",
+  "prettier.singleQuote": true,
+  "prettier.tabWidth": 2,
+  "prettier.printWidth": 100,
+  "prettier.semi": false,
+  "prettier.arrowParens": "avoid",
+  "prettier.endOfLine": "auto"
 }

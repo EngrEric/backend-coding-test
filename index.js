@@ -2,7 +2,8 @@
 
 const swaggerUi = require('swagger-ui-express')
 const sqlite3 = require('sqlite3').verbose()
-const bodyParser = require('body-parser')
+const express = require('express')
+const helmet = require('helmet')
 
 const buildSchemas = require('./src/schemas')
 const swaggerDocS = require('./src/swagger.json')
@@ -15,8 +16,11 @@ db.serialize(() => {
   buildSchemas(db)
 
   const app = require('./src/app')(db)
+  app.use(express.static(`${__dirname}/docs`))
+  // Helmet helps you secure your Express apps by setting various HTTP headers.
+  app.use(helmet())
+
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocS))
-  // parse application/json
-  app.use(bodyParser.json())
+
   app.listen(port, () => console.log(`App started and listening on port ${port}`))
 })
