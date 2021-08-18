@@ -216,8 +216,10 @@ describe('API tests', () => {
         })
         .catch(err => done(err))
     })
-  }),
-    describe('should return not found error given that the ride is not found', done => {
+  })
+
+  describe('GET /rides/1000', () => {
+    it('should return not found error when the ride is not found', done => {
       request(app)
         .get(`/rides/1000`)
         .expect('Content-Type', /json/)
@@ -228,4 +230,5 @@ describe('API tests', () => {
         })
         .catch(err => done(err))
     })
+  })
 })
