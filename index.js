@@ -8,7 +8,7 @@ const helmet = require('helmet')
 const buildSchemas = require('./src/schemas')
 const swaggerDocS = require('./src/swagger.json')
 
-const port = 8010
+const port = process.env.PORT || 8010
 
 const db = new sqlite3.Database(':memory:')
 
