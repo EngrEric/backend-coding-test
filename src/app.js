@@ -1,6 +1,6 @@
 /**
  * The product exposes endpoints for booking rides and related operation
- * Get the swagger docs at /api-docs of the root url e.g http://localhost:8010/api-docs
+ * Get the swagger docs at /api-docs of the root url e.g http://localhost:8010/api-docs or https://backend-test-coding.herokuapp.com/api-docs
  * @module routes for the rides api
  */
 

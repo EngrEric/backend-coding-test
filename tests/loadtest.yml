@@ -9,7 +9,7 @@ config:
 # ENVIRONMENTS
   environments:
     prod:
-      target: "http://wontresolve.prod:44321"
+      target: "https://backend-test-coding.herokuapp.com"
       phases:
       - duration: 30
         arrivalRate: 20

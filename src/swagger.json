@@ -13,6 +13,10 @@
     {
       "url": "http://localhost:8010",
       "description": "Development server"
+    },
+    {
+      "url": "https://backend-test-coding.herokuapp.com",
+      "description": "Production server"
     }
   ],
 
